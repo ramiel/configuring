@@ -1,19 +1,38 @@
 {
   "name": "typed-config",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "A configuration system for typescript projects",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf dist && NODE_ENV=production rollup -c",
+    "build-watch": "rimraf dist && rollup -c -w",
+    "dev": "NODE_ENV=development concurrently --kill-others \"npm run build-watch\"",
+    "lint": "eslint . --ext ts,tsx",
+    "test": "npm run lint",
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.2",
     "rollup": "^1.32.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "lodash": "^4.17.15"
   }
 }

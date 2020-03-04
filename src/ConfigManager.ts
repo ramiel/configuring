@@ -4,14 +4,14 @@ import os from 'os';
 
 export interface ConfigManagerOptions<TConfig> {
   configurations: {
-    default: Partial<TConfig>;
+    default: TConfig;
     [env: string]: Partial<TConfig>;
   };
 }
 
 export interface ConfigurationManager<TConfig> {
   get: (key: string, env?: string) => any;
-  getConfig: (env?: string) => Partial<TConfig> | undefined;
+  getConfig: (env?: string) => TConfig;
 }
 
 export const createConfigManager = <TConfig>(
@@ -26,7 +26,7 @@ export const createConfigManager = <TConfig>(
   };
 
   const { configurations } = options;
-  const configSet = new Map<string, Partial<TConfig>>();
+  const configSet = new Map<string, TConfig>();
 
   configSet.set('default', configurations.default);
 
@@ -58,16 +58,17 @@ export const createConfigManager = <TConfig>(
   const configurationManager: ConfigurationManager<TConfig> = {
     get: (key, env) => {
       const config = configurationManager.getConfig(env);
-      if (config === null) {
-        throw new Error(
-          `No configuration for environment "${env || 'default'}"`
-        );
-      }
       return get(config, key);
     },
 
     getConfig: (env) => {
-      return getFitEnvironmentConfig(env);
+      const config = getFitEnvironmentConfig(env);
+      if (!config) {
+        throw new Error(
+          `No configuration for environment "${env || 'default'}"`
+        );
+      }
+      return config;
     },
   };
 

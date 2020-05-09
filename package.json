@@ -13,6 +13,9 @@
     "test": "npm run lint",
     "prepare": "npm run build"
   },
+  "repository": {
+    "url": "https://github.com/ramiel/configuring"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

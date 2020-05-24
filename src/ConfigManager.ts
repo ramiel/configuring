@@ -2,16 +2,24 @@ import defaultsDeep from 'lodash/defaultsDeep';
 import get from 'lodash/get';
 import os from 'os';
 
+export type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[]
+    ? RecursivePartial<U>[]
+    : T[P] extends object
+    ? RecursivePartial<T[P]>
+    : T[P];
+};
+
 export interface ConfigManagerOptions<TConfig> {
   configurations: {
     default: TConfig;
-    [env: string]: Partial<TConfig>;
+    [env: string]: RecursivePartial<TConfig>;
   };
 }
 
 export interface ConfigurationManager<TConfig> {
-  get: (key: string, env?: string) => any;
-  getConfig: (env?: string) => TConfig;
+  get: (key: keyof TConfig, env?: string) => any;
+  getConfig: (env?: string) => Readonly<TConfig>;
 }
 
 export const createConfigManager = <TConfig>(

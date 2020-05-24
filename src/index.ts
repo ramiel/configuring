@@ -4,6 +4,6 @@ import type {ConfigManagerOptions, ConfigurationManager, RecursivePartial} from 
 
 export { createConfigManager };
 
-export type {ConfigManagerOptions, ConfigurationManager};
+export type {ConfigManagerOptions, ConfigurationManager, RecursivePartial};
 
 // export default createConfigManager;

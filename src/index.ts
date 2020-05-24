@@ -1,6 +1,6 @@
 import { createConfigManager } from './ConfigManager';
 // eslint-disable-next-line
-import type {ConfigManagerOptions, ConfigurationManager} from './ConfigManager';
+import type {ConfigManagerOptions, ConfigurationManager, RecursivePartial} from './ConfigManager';
 
 export { createConfigManager };
 

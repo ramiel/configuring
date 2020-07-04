@@ -1,5 +1,5 @@
-import defaultsDeep from 'lodash/defaultsDeep';
-import get from 'lodash/get';
+import defaultsDeep from 'lodash.defaultsdeep';
+import get from 'lodash.get';
 import os from 'os';
 
 export type RecursivePartial<T> = {

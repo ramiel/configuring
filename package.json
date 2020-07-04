@@ -6,7 +6,7 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && NODE_ENV=production rollup -c",
+    "build": "rimraf dist && rollup -c",
     "build-watch": "rimraf dist && rollup -c -w",
     "dev": "NODE_ENV=development concurrently --kill-others \"npm run build-watch\"",
     "lint": "eslint . --ext ts,tsx",
@@ -35,7 +35,12 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.149",
-    "lodash": "^4.17.15"
-  }
+    "@types/lodash.defaultsdeep": "^4.6.6",
+    "@types/lodash.get": "^4.4.6",
+    "lodash.defaultsdeep": "^4.6.1",
+    "lodash.get": "^4.4.2"
+  },
+  "files": [
+    "dist"
+  ]
 }

@@ -1,7 +1,8 @@
 {
   "name": "configuring",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A configuration system for typescript projects",
+  "sideEffects": false,
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
